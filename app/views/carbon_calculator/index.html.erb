@@ -1,0 +1,14 @@
+<h1>Transport carbon calculator<h1>
+
+<%= form_for :carbon_calculator, :url => { :action => "calculate" } do |f| %>
+  <%= label_tag(:origin, 'Origin') %>
+  <%= f.text_field :origin %>
+
+  <%= label_tag(:destination, 'Destination') %>
+  <%= f.text_field :destination %>
+
+  <%= label_tag(:mode, 'Mode of transport') %>
+  <%= f.text_field :mode %>
+
+  <%= submit_tag "Calculate" %>
+<% end %>
