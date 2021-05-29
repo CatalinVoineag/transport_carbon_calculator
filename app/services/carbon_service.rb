@@ -1,20 +1,22 @@
 # frozen_literal: true
 
 class CarbonService
-  attr_reader :origin, :destination, :mode
-  private :origin, :destination, :mode
+  attr_reader :origin, :destination, :transport_mode, :public_transport_mode
+  private :origin, :destination, :transport_mode, :public_transport_mode
 
-  def initialize(origin:, destination:, mode:)
+  def initialize(origin:, destination:, transport_mode:, public_transport_mode:)
     @origin = origin
     @destination = destination
-    @mode = mode
+    @transport_mode = transport_mode
+    @public_transport_mode = public_transport_mode
   end
 
-  def self.calculate_co2_kgs(origin:, destination:, mode:)
+  def self.calculate_co2_kgs(origin:, destination:, transport_mode:, public_transport_mode:)
     new(
       origin: origin,
       destination: destination,
-      mode: mode
+      transport_mode: transport_mode,
+      public_transport_mode: public_transport_mode
     ).calculate_co2_kgs
   end
 
@@ -25,7 +27,10 @@ class CarbonService
   private
 
   def average_co2_grams_per_km
-    141.8
+    AverageCo2.co2_grams_per_km(
+      transport_mode: transport_mode,
+      public_transport_mode: public_transport_mode
+    )
   end
 
   def direction_distance
@@ -36,7 +41,8 @@ class CarbonService
     @direction ||= ::GoogleMaps::Direction.results(
       origin: origin,
       destination: destination,
-      mode: mode
+      transport_mode: transport_mode,
+      public_transport_mode: public_transport_mode
     )
   end
 end

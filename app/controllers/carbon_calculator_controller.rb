@@ -7,10 +7,11 @@ class CarbonCalculatorController < ApplicationController
 
   def calculate
     render json: {
-      co2_in_kg: CarbonService.calculate_co2_kgs(
+      co2_kgs: CarbonService.calculate_co2_kgs(
         origin: origin,
         destination: destination,
-        mode: mode
+        transport_mode: transport_mode,
+        public_transport_mode: public_transport_mode
       )
     }
   end
@@ -21,7 +22,8 @@ class CarbonCalculatorController < ApplicationController
     params.require(:carbon_calculator).permit(
       :origin,
       :destination,
-      :mode
+      :transport_mode,
+      :public_transport_mode
     )
   end
 
@@ -33,7 +35,11 @@ class CarbonCalculatorController < ApplicationController
     filtered_params.fetch(:destination)
   end
 
-  def mode
-    filtered_params.fetch(:mode)
+  def transport_mode
+    filtered_params.fetch(:transport_mode)
+  end
+
+  def public_transport_mode
+    filtered_params.fetch(:public_transport_mode)
   end
 end

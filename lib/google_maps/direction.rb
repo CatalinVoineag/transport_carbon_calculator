@@ -2,20 +2,23 @@
 
 module GoogleMaps
   class Direction
-    attr_reader :origin, :destination, :mode
-    private :origin, :destination, :mode
 
-    def initialize(origin:, destination:, mode: 'driving')
+    attr_reader :origin, :destination, :transport_mode, :public_transport_mode
+    private :origin, :destination, :transport_mode, :public_transport_mode
+
+    def initialize(origin:, destination:, transport_mode:, public_transport_mode:)
       @origin = origin
       @destination = destination
-      @mode = mode
+      @transport_mode = transport_mode
+      @public_transport_mode = public_transport_mode
     end
 
-    def self.results(origin:, destination:, mode: 'driving')
+    def self.results(origin:, destination:, transport_mode:, public_transport_mode:)
       new(
         origin: origin,
         destination: destination,
-        mode: mode
+        transport_mode: transport_mode,
+        public_transport_mode: public_transport_mode
       ).results
     end
 
@@ -39,7 +42,8 @@ module GoogleMaps
       {
         origin: origin,
         destination: destination,
-        mode: mode
+        mode: transport_mode,
+        transit_mode: public_transport_mode
       }.to_query
     end
   end

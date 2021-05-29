@@ -7,8 +7,11 @@
   <%= label_tag(:destination, 'Destination') %>
   <%= f.text_field :destination %>
 
-  <%= label_tag(:mode, 'Mode of transport') %>
-  <%= f.text_field :mode %>
+  <%= label_tag(:transit_mode, 'Mode of transport') %>
+  <%= f.text_field :transport_mode %>
+
+  <%= label_tag(:public_transport_mode, 'Public transport mode') %>
+  <%= f.text_field :public_transport_mode %>
 
   <%= submit_tag "Calculate" %>
 <% end %>
