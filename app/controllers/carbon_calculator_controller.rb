@@ -36,10 +36,10 @@ class CarbonCalculatorController < ApplicationController
   end
 
   def transport_mode
-    filtered_params.fetch(:transport_mode)
+    filtered_params.fetch(:transport_mode).downcase
   end
 
   def public_transport_mode
-    filtered_params.fetch(:public_transport_mode)
+    filtered_params.fetch(:public_transport_mode).downcase
   end
 end

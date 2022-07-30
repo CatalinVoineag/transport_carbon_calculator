@@ -1,20 +1,21 @@
 source 'https://rubygems.org'
 
-ruby '2.6.0'
+ruby "3.1.2"
 
-gem 'rails', '~> 6.1.3'
-gem 'mysql2', '~> 0.5'
-gem 'puma', '~> 5.0'
-gem 'sass-rails', '>= 6'
-gem 'webpacker', '~> 5.0'
-gem 'turbolinks', '~> 5'
+gem "rails", "~> 7.0.3"
+gem "cssbundling-rails"
+gem 'pg'
+gem 'puma'
+gem "turbo-rails"
+gem "stimulus-rails"
 gem 'jbuilder', '~> 2.7'
 gem 'structural'
-gem 'bootsnap', '>= 1.4.4', require: false
+gem 'bootsnap', require: false
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'faraday'
 gem 'faraday_middleware'
 gem "typhoeus"
+gem "sprockets-rails"
 
 group :development do
   gem 'foreman', '~> 0.86.0'
@@ -24,19 +25,21 @@ end
 
 group :development, :test do
   gem 'awesome_print'
+  gem 'byebug'
   gem 'dotenv-rails'
-  gem 'pry'
-  gem 'pry-rails'
   gem 'rails_stdout_logging'
   gem 'rubocop', '~> 0.82.0', require: false
   gem 'super_diff'
 end
 
 group :test do
+  gem "rspec-rails", "~> 5.1"
+  gem "rails-controller-testing"
+  gem "factory_bot_rails", "~> 6.2"
+  gem "capybara", "~> 3.37"
   gem 'brakeman'
   gem 'bundler-audit'
   gem 'database_cleaner', '~> 1.7'
-  gem 'factory_bot_rails'
   gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'timecop'

@@ -2,16 +2,16 @@
 
 <%= form_for :carbon_calculator, :url => { :action => "calculate" } do |f| %>
   <%= label_tag(:origin, 'Origin') %>
-  <%= f.text_field :origin %>
+  <%= f.select :origin, ['Manchester, UK'], required: true %>
 
   <%= label_tag(:destination, 'Destination') %>
-  <%= f.text_field :destination %>
+  <%= f.select :destination, ['Liverpool, UK'], required: true %>
 
-  <%= label_tag(:transit_mode, 'Mode of transport') %>
-  <%= f.text_field :transport_mode %>
+  <%= label_tag(:transport_mode, 'Mode of transport') %>
+  <%= f.select :transport_mode, ['transit', 'driving'], required: true %>
 
   <%= label_tag(:public_transport_mode, 'Public transport mode') %>
-  <%= f.text_field :public_transport_mode %>
+  <%= f.select :public_transport_mode, ['train', ''], required: true %>
 
   <%= submit_tag "Calculate" %>
 <% end %>
