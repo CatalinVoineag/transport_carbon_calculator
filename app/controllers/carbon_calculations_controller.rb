@@ -1,25 +1,32 @@
 # frozen_literal: true
 
-class CarbonCalculatorController < ApplicationController
+class CarbonCalculationsController < ApplicationController
 
   def index
   end
 
-  def calculate
-    render json: {
-      co2_kgs: CarbonService.calculate_co2_kgs(
-        origin: origin,
-        destination: destination,
-        transport_mode: transport_mode,
-        public_transport_mode: public_transport_mode
-      )
-    }
+  def new
+  end
+
+  def create
+    co2_kgs = CarbonService.calculate_co2_kgs(
+      origin: origin,
+      destination: destination,
+      transport_mode: transport_mode,
+      public_transport_mode: public_transport_mode
+    )
+
+    puts co2_kgs
+    puts co2_kgs
+    puts co2_kgs
+
+    redirect_to carbon_calculations_path, notice: 'Calculation successful'
   end
 
   private
 
   def filtered_params
-    params.require(:carbon_calculator).permit(
+    params.require(:carbon_calculations).permit(
       :origin,
       :destination,
       :transport_mode,

@@ -1,6 +1,4 @@
-<h1>Transport carbon calculator<h1>
-
-<%= form_for :carbon_calculator, :url => { :action => "calculate" } do |f| %>
+<%= form_for :carbon_calculations, :url => { :action => "create" } do |f| %>
   <%= label_tag(:origin, 'Origin') %>
   <%= f.select :origin, ['Manchester, UK'], required: true %>
 
@@ -14,4 +12,5 @@
   <%= f.select :public_transport_mode, ['train', ''], required: true %>
 
   <%= submit_tag "Calculate" %>
+
 <% end %>
